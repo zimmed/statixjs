@@ -99,7 +99,7 @@ async function initSrc() {
   const path = resolve(process.cwd(), SITE.buildOptions.srcPath);
   const indexExists = await fileExists(
     ...['ts', 'tsx', 'jsx', 'js', 'xhtm', 'htm', 'xhtml', 'html', 'xml'].map((ext) =>
-      join(path, 'pages', `${index}.${ext}`)
+      join(path, 'pages', `index.${ext}`)
     )
   );
 
