@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const { resolve } = require('path');
 const buildAll = require('../build/bundle').default;
 const { exec } = require('./helpers');
 
@@ -6,7 +7,7 @@ const path = resolve(__dirname, 'webpack.builder.config.js');
 
 console.log('--- Building statixjs website ---');
 
-exec('$(npm bin)/webpack', '--config', `"${path}"`)
+exec('$(npm bin)/webpack', '--config', path)
   .then(() =>
     buildAll(undefined, {
       prettyPrint: true,

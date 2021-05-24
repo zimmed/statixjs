@@ -35,7 +35,7 @@ export default function Sass({
     'Break',
     'sass',
     'props',
-    `return sass\`${children}\`;`
+    'return sass`' + children + '`;'
   )(
     SITE,
     Color,

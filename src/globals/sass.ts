@@ -58,8 +58,9 @@ function newLineSrc(css: string) {
 
 function addCss(css: string) {
   const lines = css.split('\n');
-  const arr = compiledCss[CURRENT_PAGE];
+  let arr = compiledCss[CURRENT_PAGE];
 
+  if (!arr) arr = compiledCss[CURRENT_PAGE] = [];
   lines.forEach((line) => {
     if (line && !arr.includes(line)) arr.push(line);
   });

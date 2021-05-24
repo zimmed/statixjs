@@ -6,25 +6,25 @@ const FORMATS: {
   hbs: {
     opener: '{{',
     closer: '}}',
-    openerPattern: /(^|[^\\\$\{])\{\{/g,
+    openerPattern: /(^|[^\\\$\{])\{\{(.|$)/g,
     closerPattern: /(^|[^\\])\}\}([^\}]|$)/g,
   },
   scss: {
     opener: '#{(/*',
     closer: '*/)}',
-    openerPattern: /(^|[^\\])\#\{\s*\(\s*\/\*/g,
-    closerPattern: /(^|[^\\])\*\/\s*\)\s*\}/g,
+    openerPattern: /(^|[^\\])\#\{\s*\(\s*\/\*(.|$)/g,
+    closerPattern: /(^|[^\\])\*\/\s*\)\s*\}(.|$)/g,
   },
   node: {
     opener: '${',
     closer: '}',
-    openerPattern: /(^|[^\\])\$\{/g,
+    openerPattern: /(^|[^\\])\$\{(.|$)/g,
     closerPattern: /(^|[^\\])\}([^\}]|$)/g,
   },
   jsx: {
     opener: '{',
     closer: '}',
-    openerPattern: /(^|[^\\\{])\{/g,
+    openerPattern: /(^|[^\\\{])\{(.|$)/g,
     closerPattern: /(^|[^\\])\}([^\}]|$)/g,
   },
 };

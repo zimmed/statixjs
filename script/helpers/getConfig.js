@@ -1,3 +1,4 @@
+const fs = require('fs');
 const process = require('process');
 const { resolve } = require('path');
 
@@ -42,6 +43,7 @@ const SCHEMA = {
     schema: {
       breakpoints: {
         type: 'object',
+        default: {},
         schema: {
           xs: { type: 'number', default: 0 },
           sm: { type: 'number', default: 576 },
@@ -54,6 +56,7 @@ const SCHEMA = {
       palette: {
         type: 'object',
         warn: true,
+        default: {},
         schema: {
           fg: { type: 'string', default: '#333' },
           bg: { type: 'string', default: '#DDD' },
@@ -65,8 +68,9 @@ const SCHEMA = {
       },
       font: {
         type: 'object',
+        default: {},
         warn: true,
-        shcema: {
+        schema: {
           heading: { type: 'string', default: 'serif' },
           body: { type: 'string', default: 'sans-serif' },
         },
@@ -153,14 +157,14 @@ module.exports = function getConfig(verbose = false) {
   let SITE = null;
 
   try {
-    SITE = require(require.resolve(resolve(process.cwd(), 'siteconfig.json')));
-    if (!SITE) throw new Error();
+    SITE = fs.readFileSync(resolve(process.cwd(), 'siteconfig.json'), 'utf8').toString();
+    if (!SITE) throw new Error(`No siteconfig.json in project root!`);
   } catch (e) {
-    throw new Error(`No siteconfig.json in project root!`);
+    throw e;
   }
 
   try {
-    if (typeof site === 'string') SITE = JSON.parse(SITE);
+    SITE = JSON.parse(SITE);
   } catch (e) {
     throw new Error(`siteconfig.json is not valid JSON format: ${e?.message || e}`);
   }
