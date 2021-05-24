@@ -17,7 +17,6 @@ const dependencies = [
   'webpack-node-externals',
   'typescript',
   'classnames',
-  '@types/classnames',
   '@types/fs-extra',
   '@types/node',
   '@types/node-sass',

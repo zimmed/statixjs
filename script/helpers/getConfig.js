@@ -151,7 +151,6 @@ function validateConfig(cfg, verbose) {
 
 module.exports = function getConfig(verbose = false) {
   let SITE = null;
-  let error;
 
   try {
     SITE = require(require.resolve(resolve(process.cwd(), 'siteconfig.json')));
@@ -161,7 +160,7 @@ module.exports = function getConfig(verbose = false) {
   }
 
   try {
-    SITE = JSON.parse(SITE);
+    if (typeof site === 'string') SITE = JSON.parse(SITE);
   } catch (e) {
     throw new Error(`siteconfig.json is not valid JSON format: ${e?.message || e}`);
   }
