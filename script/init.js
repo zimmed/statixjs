@@ -34,7 +34,7 @@ async function initDependencies() {
     (d) => `${d}@${pkg.devDependencies[d].replace(/[^\d\.]/g, '')}`
   );
 
-  return exec(`npm i --save-dev ${packages.join(' ')}`);
+  return exec('npm', 'i', '--save-dev', ...packages);
 }
 
 function fileExists(path, ...paths) {
@@ -65,7 +65,7 @@ async function initTsConfig() {
   let tsconfig;
 
   if (!exists) {
-    await exec(`$(npm bin)/typescript --init`);
+    await exec('$(npm bin)/typescript', '--init');
   }
 
   tsconfig = JSON.parse((await fs.promises.readFile(path, 'utf8')).toString());

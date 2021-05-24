@@ -6,7 +6,7 @@ const path = resolve(__dirname, 'webpack.builder.config.js');
 
 console.log('--- Building statixjs website ---');
 
-exec(`$(npm bin)/webpack --config "${path}"`)
+exec('$(npm bin)/webpack', '--config', `"${path}"`)
   .then(() =>
     buildAll(undefined, {
       prettyPrint: true,
