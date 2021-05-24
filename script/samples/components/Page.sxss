@@ -1,0 +1,23 @@
+& {
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  .header {
+    height: 250px;
+    background: #{(/*SITE.theme.palette.fg*/)};
+    color: #{(/*SITE.theme.palette.bg*/)};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content {
+    padding: 1em;
+    background: #{(/*SITE.theme.palette.bg*/)};
+    color: #{(/*SITE.theme.palette.fg*/)};
+    p {
+      text-align: justify;
+    }
+  }
+}

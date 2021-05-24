@@ -1,0 +1,35 @@
+{
+  "name": "Unnamed Website",
+  "language": "en",
+  "region": "US",
+  "domain": "localhost",
+  "description": "A very cool website created with statixjs.",
+  "styles": [
+    "/css/reset.css",
+    "/css/theme.css",
+    "/css/bundle.css"
+  ],
+  "scripts": [],
+  "icons": [],
+  "theme": {
+    "palette": {
+      "fg": "#333",
+      "bg": "#DDD",
+      "fgAlt": "#000",
+      "bgAlt": "#FFF",
+      "link": "#004080",
+      "linkHover": "#0080C0"
+    },
+    "font": {
+      "heading": "serif",
+      "body": "sans-serif"
+    }
+  },
+  "buildOptions": {
+    "srcPath": "src",
+    "assetsPath": "assets",
+    "websitePath": "public_html",
+    "manifest": true,
+    "bundleStyles": true
+  }
+}

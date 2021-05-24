@@ -1,0 +1,24 @@
+<x-Document lang={{props.lang}} region={{props.region}}>
+  <x-Head og={{props.og}} title={{props.title || `${SITE.name} | ${props.id}`}} desc={{props.desc}}>
+    <link rel="stylesheet" type="text/css" href="/css/custom.css" />
+  </x-Head>
+  <x-Body>
+    <x-Component
+      name="Page"
+      className={{className}}
+      id={{props.id}}
+      style={{props.style}}
+    >
+      <div class="header">
+        <x-Style>
+          height: {{props.id.toLowerCase() === 'home' ? '400px' : '200px'}}
+        </x-Style>
+        <h1>{{SITE.name}} | {{props.name || props.id}}</h1>
+      </div>
+      <div class="content">
+        <x-Style cls>min-height: 400px;</x-Style>
+        {{children}}
+      </div>
+    </x-Component>
+  </x-Body>
+</x-Document>

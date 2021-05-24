@@ -1,0 +1,63 @@
+{
+  "name": "@zimmed/statix.js",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.ts",
+  "types": "index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "files": [
+    "/src",
+    "/script",
+    "/index.d.ts",
+    "/siteconfig.json",
+    "/package.json"
+  ],
+  "scripts": {
+    "start": "$(npm bin)/run-p build:watch compile:watch serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "$(npm bin)/webpack --config webpack.builder.config.js",
+    "build:watch": "$(npm bin)/webpack --config webpack.builder.config.js --watch",
+    "compile": "node script/compile-run.js",
+    "compile:watch": "node script/compile-watch.js",
+    "serve": "$(npm bin)/fast-live-reload -s build/public"
+  },
+  "bin": {
+    "statix-init": "node script/init.js",
+    "statix-start": "node script/start.js",
+    "statix-build": "node script/webpack-run.js && node script/build-run.js",
+    "statix-serve": "node script/serve.js"
+  },
+  "author": "vitalistic.science@protonmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/classnames": "^2.3.1",
+    "@types/fs-extra": "^9.0.11",
+    "@types/node": "^15.3.0",
+    "@types/node-sass": "^4.11.1",
+    "@types/react": "^17.0.6",
+    "@types/uuid": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
+    "classnames": "^2.3.1",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "fast-live-reload": "^2.10.0",
+    "fs-extra": "^10.0.0",
+    "glob-watcher": "^5.0.5",
+    "node-sass": "^6.0.0",
+    "npm-run-all": "^4.1.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "serve": "^11.3.2",
+    "ts-loader": "^9.1.2",
+    "typescript": "^4.2.4",
+    "uuid": "^8.3.2",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0",
+    "webpack-node-externals": "^3.0.0",
+    "wildcards-entry-webpack-plugin": "^2.1.0"
+  }
+}

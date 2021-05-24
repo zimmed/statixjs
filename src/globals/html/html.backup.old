@@ -1,0 +1,7 @@
+// globalThis.html = function html(strings: TemplateStringsArray, ...expressions: any[]): string {
+//   const compiled = `${strings[0]}${expressions
+//     .map((exp, i) => `${exp}${strings[i + 1]}`)
+//     .join('')}`;
+
+//   return compiled;
+// };

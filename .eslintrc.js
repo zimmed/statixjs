@@ -1,0 +1,30 @@
+module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  extends: ['eslint:recommended', 'typescript-eslint:recommended', 'prettier'],
+  env: {
+    es6: true,
+    es2017: true,
+    es2020: true,
+  },
+  plugins: ['@typescript-eslint/parser', 'prettier'],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module',
+    ecmaFeatures: { impliedStrict: true, jsx: false },
+  },
+  rules: {
+    'no-console': 1,
+    'no-plusplus': [2, { allowForLoopAfterthoughts: true }],
+    'no-shadow': [2, { allow: ['_'] }],
+    'ordered-imports': 0,
+    'object-literal-sort-keys': 0,
+    'no-this-assignment': 0,
+    'no-param-reassign': [2, { props: false }],
+    'no-await-in-loop': 0,
+    'no-unused-vars': [1, { ignoreRestSiblings: true }],
+    'no-nexted-ternary': 0,
+    'no-fallthrough': 0,
+    'prettier/prettier': 2,
+  },
+};

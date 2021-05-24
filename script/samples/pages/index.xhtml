@@ -1,0 +1,63 @@
+<x-Page id="Home" title="Home">
+  <h3>Welcome to the site!</h3>
+  <p>
+    You can make changes to this page by editing and saving the file:
+    <code>&lt;root&gt;/src/pages/index.xhtml</code>
+  </p>
+  <p>
+    The <code>SITE</code> object is the configuration defined in the file
+    <code>&lt;root&gt;siteconfig.json</code>
+  </p>
+  <p>
+    Pages, components, and styles in <code>&lt;root&gt;/src</code> will automatically be rebuild
+    when changes occur.
+  </p>
+  <h5>Components</h5>
+  <p>
+    Components may be exported using handlebar syntax (like this sample page) in
+    <code>x?html?</code> files or in React-like components that return content using the global
+    <code>html</code> tag. (see
+    <code>&lt;root&gt;/node_modules/@zimed/statixjs/script/samples</code>).
+  </p>
+  <p>
+    By default all components defined in <code>&lt;root&gt;/src/components</code> as well as the
+    builtins (Document, Body, Head, Component) are exposed to the application markup without having
+    to manually bind them. Using the xhtml format or inline string templates, they can be rendered
+    with the following syntax: <code>&lt;x-MyComponent content="Hello world!" /&gt;</code> or
+    <code>
+      &lt;x-MyComponent someProp=&lbrace;&lbrace;&lbrace; foo: 'bar' &rbrace;&rbrace;&rbrace;Hello,
+      world!&lt;/x-MyComponent&gt;
+    </code>
+    <sub>(Where 'MyComponent' is the exported name of the component)</sub>
+  </p>
+  <h5>Pages</h5>
+  <p>Pages are special, non-reusable components that represent an entire rendered page.</p>
+  <h5>Styles</h5>
+  <p>
+    You may define entire stylesheets or page/component specific styles using the special
+    interpolated scss syntax or by exporting style content using the global <code>sass</code> tag in
+    a script file. The compilation process will detect if the style is dependent on component
+    properties, and if it is, all styles will be interpolated and applied to the ID of the
+    component. If it has no <code>props</code> dependencies, the styles will be applied to the base
+    className. Inline styles (defined with component) are presumed to be instance-dependent, but
+    this can be overridden by applying the `cls` boolean attribute. <code>&lt;x-Style cls&gt;</code>
+  </p>
+  <p>
+    Page or component styles may be defined in external files adjacent to the page or component
+    using the same filename but with one of the style extensions (style:
+    <code>sass|sxss|s?css</code> script: <code>jx?ss|tx?ss</code>).
+  </p>
+  <p>
+    When using the style formats (e.g., file.sxss), string interpolation uses the following syntax
+    to avoid breaking scss syntax:
+    <code>
+      <pre>
+        color: #&lbrace;(/*SITE.theme.palette.fg*/)&rbrace;;
+        background: #&lbrace;(/* props.theme === 'dark' ? 'black' : 'white' */)&rbrace;;
+        &amp;:hover &lbrace; color: #&lbrace; ( /* props.hoverColor */ ) &rbrace;; &rbrace;
+      </pre>
+    </code>
+    If exporting styles from a script or doing them inline, normal JavaScript string interpolation
+    rules apply.
+  </p>
+</x-Page>

@@ -1,0 +1,243 @@
+// import * as React from 'react';
+// import { v4 } from 'uuid';
+// import { RenderMap } from '../../index.d';
+
+// type Component = Function & { name?: string };
+
+// const placeholder = `__PH${Date.now().toString(36)}__`;
+// const compPlaceholder = `__COMP${Date.now().toString(36)}__`;
+// const placeholderPattern = new RegExp(`${placeholder}(\\d+)`, 'g');
+// const compPlaceholderPattern = new RegExp(`${compPlaceholder}([a-f0-9]+)`, 'ig');
+// const strictPlaceholderPattern = new RegExp(`^${placeholder}(\\d+)$`);
+// const attributePlaceholderPattern = new RegExp(`\\<[^\\>]*(\\w+)=(${placeholder})(\\d+)`, 'g');
+// const barenCompPattern = new RegExp(`\\<\\s*${placeholder}(\\d+)([^\\>]*)\\/\\>`, 'g');
+// const openOrCloseComp = (openName?: string) =>
+//   openName
+//     ? new RegExp(`\\<(\\/)?\\s*(${placeholder}|${openName})(\\d+)?([^\\>\\/]*)\\>`)
+//     : new RegExp(`\\<(\\/)?\\s*${placeholder}(\\d+)([^\\>\\/]*)\\>`);
+
+// export function html(strings: TemplateStringsArray, ...expressions: any[]): () => string {
+//   const values = expressions.map((v) => (v == null ? '' : v));
+//   const renders: RenderMap = {};
+//   let whole = strings.map((s, i) => (i ? `${placeholder}${i - 1}${s}` : s)).join('');
+
+//   whole = whole.replace(barenCompPattern, (_: any, p1: string, p2: string) => {
+//     const vIdx = Number(p1);
+//     const comp = values[vIdx];
+
+//     return typeof comp === 'function'
+//       ? parseComponent(comp, parseProps(p2, values), undefined, renders)
+//       : `<${comp}${p2}/>`;
+//   });
+//   whole = parseContent(whole, values, renders)[1];
+//   whole = parseExpressions(whole, values, renders);
+
+//   function render(r = renders) {
+//     return whole.replace(compPlaceholderPattern, (_: string, id: string) => `${r[id](r)}`);
+//   }
+
+//   render.toString = function toString() {
+//     return render();
+//   };
+
+//   return render;
+// }
+
+// export function parseExpressions(str: string, values: any[], renders?: RenderMap) {
+//   return str
+//     .replace(attributePlaceholderPattern, (str: string, key: string, id: string, idx: string) => {
+//       const v = values[Number(idx)];
+
+//       return typeof v === 'undefined'
+//         ? str.replace(`${key}=${id}${idx}`, '')
+//         : str.replace(`${id}${idx}`, `"${v === null ? '' : v}"`);
+//     })
+//     .replace(placeholderPattern, (_: string, idx: string) => {
+//       const v = values[Number(idx)];
+
+//       if (renders && typeof v === 'function') {
+//         const id = v4().replace(/\-/g, '');
+
+//         renders[id] = v;
+//         return `${compPlaceholder}${id}`;
+//       }
+//       return `${v}`;
+//     });
+// }
+
+// export function replacePortion(
+//   str: string,
+//   start: number,
+//   end: number,
+//   fn: (s: string) => string
+// ): string {
+//   return `${str.substring(0, start)}${fn(str.substring(start, end))}${str.substring(end)}`;
+// }
+
+// function json(str: string): any {
+//   try {
+//     return JSON.parse(str);
+//   } catch (e) {
+//     return undefined;
+//   }
+// }
+
+// export function parseProps(attrString: string, values: any[]): { [x: string]: any } {
+//   const props: { [x: string]: any } = {};
+
+//   console.log('parseProps', attrString);
+
+//   attrString.replace(
+//     /\s+(\w+)\s*(=)?\s*(\"[^\"]*\"|\'[^\']*\'|[^\s^\>]*)/g,
+//     (match: string, key: string, hasAssignment?: string, assignment?: string) => {
+//       let m;
+
+//       console.log('attr match', { match, key, hasAssignment, assignment });
+//       if (!hasAssignment) props[key] = true;
+//       else if (assignment === 'undefined') return '';
+//       else if ((m = strictPlaceholderPattern.exec(assignment as string))) {
+//         console.log('m', m);
+//         props[key] = values[Number(m[1])];
+//       } else if (typeof (m = json(assignment as string)) !== 'undefined') {
+//         props[key] = typeof m === 'string' ? parseExpressions(m, values) : m;
+//       } else if (/^\'[^\']*\'$/.test(assignment as string)) {
+//         m = json((assignment as string).slice(1, -1));
+//         if (typeof m !== 'undefined')
+//           props[key] = typeof m === 'string' ? parseExpressions(m, values) : m;
+//         else props[key] = parseExpressions((assignment as string).slice(1, -1), values);
+//       }
+
+//       return '  ';
+//     }
+//   );
+
+//   return props;
+// }
+
+// export function parseContent(
+//   str: string,
+//   values: any[],
+//   renders: RenderMap,
+//   openComp?: Component
+// ): [number, string] {
+//   let start = 0;
+//   let content = str;
+
+//   do {
+//     const {
+//       0: match = '',
+//       1: close,
+//       2: mixed,
+//       3: attributes = '',
+//       index = -1,
+//     } = (openOrCloseComp(openComp?.name).exec(content.substr(start)) || {}) as {
+//       0?: string;
+//       1?: string;
+//       2?: string;
+//       3?: string;
+//       index?: number;
+//     };
+
+//     if (match) {
+//       const comp = mixed === openComp?.name ? mixed : values[Number(mixed)];
+
+//       if (close) {
+//         if (openComp && (openComp === comp || openComp.name === comp)) {
+//           return [
+//             start + index + match.length,
+//             replacePortion(content, start, start + index + match.length + 1, (s) =>
+//               parseExpressions(s, values, renders)
+//             ).substring(0, start + index),
+//           ];
+//         }
+//         throw new Error(
+//           `Malformed X/HTML: Unexpected closing tag for ${comp?.name} at ${start + index}`
+//         );
+//       }
+//       if (typeof comp === 'function') {
+//         const props = parseProps(attributes, values);
+//         const [next, inner] = parseContent(
+//           content.substr(start + index + match.length),
+//           values,
+//           renders,
+//           comp
+//         );
+
+//         content = replacePortion(content, start + index, next + start + index + match.length, () =>
+//           parseComponent(comp, props, inner, renders)
+//         );
+//         start += index + match.length + next;
+//       }
+//     } else if (openComp) {
+//       throw new Error(
+//         `Malformed X/HTML: Expected closing tag for ${openComp.name} but none found.`
+//       );
+//     } else {
+//       content = replacePortion(content, start, content.length, (s) =>
+//         parseExpressions(s, values, renders)
+//       );
+//       start = content.length;
+//     }
+//   } while (start < content.length);
+
+//   if (openComp) {
+//     throw new Error(`Malformed X/HTML: Expected closing tag for ${openComp.name} but none found.`);
+//   }
+
+//   return [start, content];
+// }
+
+// export function parseComponent(
+//   comp: Function,
+//   props: { [x: string]: any } = {},
+//   inner?: string,
+//   renders?: RenderMap
+// ): string {
+//   const render = (r = renders) => comp({ ...props, children: inner })(r);
+
+//   if (renders) {
+//     const id = v4().replace(/\-/g, '');
+
+//     renders[id] = render;
+//     return `${compPlaceholder}${id}`;
+//   }
+//   return render();
+// }
+
+// function demo() {
+//   function Div({ children, ...props }: { children?: string } & { [x: string]: any } = {}) {
+//     const attrs = Object.keys(props)
+//       .map((key) => `${key}="${props[key]}"`)
+//       .join(' ');
+
+//     return html`<div ${attrs}>${children}</div>`;
+//   }
+
+//   function Comp({
+//     children,
+//     className,
+//     id,
+//   }: { children?: string; className?: string; id?: string } = {}) {
+//     console.log({ className, id, children });
+//     return html`<${Div} class="Comp ${className}" id=${id}>${children}</Div>`;
+//   }
+
+//   function Greeting({ name = 'unnamed' }: { name?: string } = {}) {
+//     return html`<span>Hello, ${name}</span>`;
+//   }
+
+//   return html`
+//     <div class="root" id=${'root'} data-bool=${true} style="display:block;">
+//       <${Comp} className="parent" id=${Date.now().toString(36)}>
+//         <${Comp} className="child">
+//           <p><${Greeting} name="dudeman" /></p>
+//         </Comp>
+//       </Comp>
+//       <${Comp} className="self-closing" />
+//     </div>
+//   `;
+// }
+
+// function demo2() {}
+
+// console.log(demo2());
