@@ -39,11 +39,9 @@ const SCHEMA = {
   styles: { type: 'array', default: [], schema: { type: 'string' } },
   theme: {
     type: 'object',
-    default: {},
     schema: {
       breakpoints: {
         type: 'object',
-        default: {},
         schema: {
           xs: { type: 'number', default: 0 },
           sm: { type: 'number', default: 576 },
@@ -56,7 +54,6 @@ const SCHEMA = {
       palette: {
         type: 'object',
         warn: true,
-        default: {},
         schema: {
           fg: { type: 'string', default: '#333' },
           bg: { type: 'string', default: '#DDD' },
@@ -68,7 +65,6 @@ const SCHEMA = {
       },
       font: {
         type: 'object',
-        default: {},
         warn: true,
         schema: {
           heading: { type: 'string', default: 'serif' },
@@ -116,13 +112,18 @@ function validateSchema(
   if (type === 'object') {
     if (!value) {
       if (warn && verbose) console.warn(`No "${field}" specified... using default`);
-      return !def && schema ? validateObjectSchema(schema, {}, field, verbose) : def;
+      return typeof def === 'undefined' && schema
+        ? validateObjectSchema(schema, {}, field, verbose)
+        : def;
     }
     if (typeof value !== 'object') throw new Error(`Type mismatch: expected Object at "${field}".`);
     if (schema) return validateObjectSchema(schema, value, field, verbose);
     return value;
   }
-  if (type === typeof value || ((def || optional) && typeof value === 'undefined')) {
+  if (
+    type === typeof value ||
+    ((typeof def !== 'undefined' || optional) && typeof value === 'undefined')
+  ) {
     if (typeof value === 'undefined') {
       if (warn && verbose) console.warn(`No "${field}" specified... using default`);
       return def;
@@ -138,7 +139,7 @@ function validateSchema(
 function validateObjectSchema(schema, obj, field = '', verbose) {
   const out = {};
 
-  Object.keys(obj).forEach((key) => {
+  Object.keys(schema).forEach((key) => {
     out[key] = validateSchema(
       schema[key],
       obj[key],
