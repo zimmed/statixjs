@@ -52,7 +52,7 @@ async function initSiteConfig() {
   if (!exists) {
     await fs.promises.writeFile(
       path,
-      await fs.promises.readFile(resolve(__dirname, 'smaples', 'siteconfig.json'), 'utf8'),
+      await fs.promises.readFile(resolve(__dirname, 'samples', 'siteconfig.json'), 'utf8'),
       'utf8'
     );
   }
