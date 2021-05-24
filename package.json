@@ -25,10 +25,10 @@
     "serve": "$(npm bin)/fast-live-reload -s build/public"
   },
   "bin": {
-    "statix-init": "node script/init.js",
-    "statix-start": "node script/start.js",
-    "statix-build": "node script/webpack-run.js && node script/build-run.js",
-    "statix-serve": "node script/serve.js"
+    "statix-init": "script/init.js",
+    "statix-start": "script/start.js",
+    "statix-build": "script/build-run.js",
+    "statix-serve": "script/serve.js"
   },
   "author": "vitalistic.science@protonmail.com",
   "license": "ISC",

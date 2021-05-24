@@ -1,7 +1,20 @@
 const buildAll = require('../build/bundle').default;
+const { exec } = require('./helpers');
+
+const path = resolve(__dirname, 'webpack.builder.config.js');
 
 console.log('--- Building statixjs website ---');
-buildAll(console.log.bind(console))
+
+exec(`$(npm bin)/webpack --config "${path}"`)
+  .then(() =>
+    buildAll(undefined, {
+      prettyPrint: true,
+      manifest: true,
+      clean: true,
+      pages: true,
+      assets: true,
+    })
+  )
   .then(() => {
     console.log('--- Finished. ---');
     process.exit(0);
