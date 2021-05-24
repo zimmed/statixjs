@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs-extra');
 const { resolve } = require('path');
 const watch = require('glob-watcher');

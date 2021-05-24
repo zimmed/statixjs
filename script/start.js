@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+#!/usr/bin/env node
 const { exec: _exec } = require('./helpers');
 
 let procs = 0;
@@ -17,10 +17,10 @@ module.exports = function exec(cli, waitForAll = false, restarts = 0, restartInt
 };
 
 function start(waitForAll = false) {
-  _exec(`node ${resolve(__dirname, 'webpack-run.js')}`).then(() => {
-    exec(`node ${resolve(__dirname, 'build-watch.js')}`, waitForAll);
-    exec(`node ${resolve(__dirname, 'compile-watch.js')}`, waitForAll);
-    exec(`node ${resolve(__dirname, 'serve.js')}`, waitForAll);
+  _exec('$(npm-bin)/statix-compile').then(() => {
+    exec('$(npm-bin)/statix-compile-watch', waitForAll);
+    exec('$(npm bin)/statix-build-watch', waitForAll);
+    exec('$(npm bin)/statix-serve', waitForAll);
   });
 }
 

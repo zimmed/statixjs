@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const buildAll = require('../build/bundle').default;
 const { exec } = require('./helpers');
 

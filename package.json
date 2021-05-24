@@ -1,6 +1,6 @@
 {
-  "name": "@zimmed/statix.js",
-  "version": "0.1.1",
+  "name": "@zimmed/statixjs",
+  "version": "0.1.2",
   "description": "",
   "main": "src/index.ts",
   "types": "index.d.ts",
@@ -28,6 +28,9 @@
     "statix-init": "script/init.js",
     "statix-start": "script/start.js",
     "statix-build": "script/build-run.js",
+    "statix-compile": "script/webpack-run.js",
+    "statix-build-watch": "script/build-watch.js",
+    "statix-compile-watch": "script/webpack-watch.js",
     "statix-serve": "script/serve.js"
   },
   "author": "vitalistic.science@protonmail.com",

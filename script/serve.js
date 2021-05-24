@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const process = require('process');
 const { resolve } = require('path');
 const { getConfig, exec } = require('./helpers');
