@@ -60,7 +60,7 @@ const SCHEMA = {
           fgHighlight: { type: 'string', default: '#000' },
           bgHighlight: { type: 'string', default: '#FFF' },
           link: { type: 'string', default: '#004080' },
-          linkHover: { type: 'number', default: '#0080C0' },
+          linkHover: { type: 'string', default: '#0080C0' },
         },
       },
       font: {
