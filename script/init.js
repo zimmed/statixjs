@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const process = require('process');
 const fs = require('fs');
+const stripComments = require('strip-json-comments');
 const { resolve, dirname, join } = require('path');
 const pkg = require('../package.json');
 const { exec, getConfig, ensureDir } = require('./helpers');
@@ -65,10 +66,10 @@ async function initTsConfig() {
   let tsconfig;
 
   if (!exists) {
-    await exec('$(npm bin)/typescript', '--init');
+    await exec('npx', 'tsc', '--init');
   }
 
-  tsconfig = JSON.parse((await fs.promises.readFile(path, 'utf8')).toString());
+  tsconfig = JSON.parse(stripComments((await fs.promises.readFile(path, 'utf8')).toString()));
 
   if (!tsconfig) tsconfig = {};
   if (!tsconfig.compilerOptions) tsconfig.compilerOptions = {};
