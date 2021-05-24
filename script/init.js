@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const process = require('process');
 const fs = require('fs');
-const stripComments = require('strip-json-comments');
 const { resolve, dirname, join } = require('path');
 const pkg = require('../package.json');
 const { exec, getConfig, ensureDir } = require('./helpers');
@@ -9,6 +8,7 @@ const { exec, getConfig, ensureDir } = require('./helpers');
 let SITE;
 
 const dependencies = [
+  'strip-json-comments',
   'fast-live-reload',
   'fs-extra',
   'glob-watcher',
@@ -69,7 +69,9 @@ async function initTsConfig() {
     await exec('npx', 'tsc', '--init');
   }
 
-  tsconfig = JSON.parse(stripComments((await fs.promises.readFile(path, 'utf8')).toString()));
+  tsconfig = JSON.parse(
+    require('strip-json-comments')((await fs.promises.readFile(path, 'utf8')).toString())
+  );
 
   if (!tsconfig) tsconfig = {};
   if (!tsconfig.compilerOptions) tsconfig.compilerOptions = {};
