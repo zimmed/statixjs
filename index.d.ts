@@ -149,7 +149,7 @@ declare var Break: IBreak;
 declare var CURRENT_PAGE: string;
 
 declare module 'statixjs' {
-  export {
+  export type {
     PageProps,
     BodyProps,
     HeadProps,

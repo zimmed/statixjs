@@ -1,3 +1,5 @@
 import { IConfig } from '../../index.d';
 
-export default () => IConfig;
+declare module 'getConfig' {
+  export default function getConfig(): IConfig;
+}

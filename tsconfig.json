@@ -69,6 +69,6 @@
     "forceConsistentCasingInFileNames": true,       /* Disallow inconsistently-cased references to the same file. */
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "index.d.ts"],
+  "include": ["src/**/*", "index.d.ts", "script/helpers/getConfig.d.ts"],
   "exclude": ["node_modules", "public", "script"]
 }
