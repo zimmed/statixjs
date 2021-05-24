@@ -1,8 +1,8 @@
 const process = require('process');
 const { spawn } = require('child_process');
 
-module.exports = function exec(...cli) {
-  const child = spawn(...cli);
+module.exports = function exec(first, ...rest) {
+  const child = spawn(first, rest);
 
   child.stdout.on('data', function (data) {
     process.stdout.write(data);
