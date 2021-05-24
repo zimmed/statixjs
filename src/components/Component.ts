@@ -1,6 +1,6 @@
 import { v4 } from 'uuid';
 import cx from 'classnames';
-import { ComponentProps } from '../../index.d';
+import type { ComponentProps } from '../../index.d';
 
 export default function Component({
   style,

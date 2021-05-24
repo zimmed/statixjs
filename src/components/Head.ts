@@ -1,4 +1,4 @@
-import { HeadProps, IStringable } from '../../index.d';
+import type { HeadProps, IStringable } from '../../index.d';
 
 export default function Head({
   title = SITE.name,

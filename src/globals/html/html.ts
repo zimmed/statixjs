@@ -1,4 +1,6 @@
-import { ElementNode, ValueNode, CMap, placeholder, IRender } from './constants';
+import type { CMap } from '../../../index.d';
+import type { ElementNode, ValueNode } from './types';
+import { placeholder } from './constants';
 import parseElement from './parseElement';
 import createElement from './createElement';
 

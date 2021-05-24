@@ -1,6 +1,6 @@
 import { join } from 'path';
 import './globals';
-import { Component, IConfig, ISass } from '../index.d';
+import type { Component, IConfig, ISass } from '../index.d';
 import * as build from './build';
 import * as builtins from './components';
 

@@ -1,4 +1,5 @@
-import { placeholder, PropsNode, PROPS } from './constants';
+import { placeholder, PROPS } from './constants';
+import type { PropsNode } from './types';
 import getValue from './getValue';
 import parseValues from './parseValues';
 

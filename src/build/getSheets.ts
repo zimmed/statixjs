@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import { resolve, join } from 'path';
 import process from 'process';
-import { ISass } from '../../index.d';
+import type { ISass } from '../../index.d';
 import { convertInterpolation } from '../utils';
 import { Sass } from '../components';
 

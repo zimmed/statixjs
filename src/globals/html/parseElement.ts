@@ -1,4 +1,5 @@
-import { ValueNode, ElementNode, placeholder, VOID_ELEMENTS, ELEMENT } from './constants';
+import { placeholder, VOID_ELEMENTS, ELEMENT } from './constants';
+import type { ValueNode, ElementNode } from './types';
 import getValue from './getValue';
 import parseValues from './parseValues';
 import parseProps from './parseProps';

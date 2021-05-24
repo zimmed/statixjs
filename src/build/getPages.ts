@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import { resolve, join } from 'path';
 import process from 'process';
-import { Component } from '../../index.d';
+import type { Component } from '../../index.d';
 import { convertInterpolation } from '../utils';
 import createComponent from './createComponent';
 import injectStyle from './injectStyle';

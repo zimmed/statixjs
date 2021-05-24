@@ -1,4 +1,4 @@
-import { Component } from '../../index.d';
+import type { Component } from '../../index.d';
 
 export default function wrapComponent(
   Component: Component,

@@ -12,20 +12,24 @@ module.exports = {
     rules: [
       {
         test: /\.(tsx?|jsx?|jx?ss|tx?ss)$/i,
-        use: 'ts-loader',
         include: resolve(__dirname, '..', 'src'),
-        options: {
-          transpileOnly: true,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
         },
       },
       {
         test: /\.(tsx?|jsx?|jx?ss|tx?ss)$/i,
-        use: 'ts-loader',
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
+        },
         include: resolve(process.cwd(), SITE.buildOptions.srcPath),
         exclude: /node_modules/,
-        options: {
-          transpileOnly: true,
-        },
       },
       {
         test: /\.(x?css|scss|sxss|sass|style|stylesheet|sheet)$/i,

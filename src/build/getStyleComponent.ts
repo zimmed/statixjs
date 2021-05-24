@@ -1,4 +1,4 @@
-import { Component, IRender } from '../../index.d';
+import type { Component, IRender } from '../../index.d';
 import { convertInterpolation } from '../utils';
 import { Sass } from '../components';
 import wrapComponent from './wrapComponent';

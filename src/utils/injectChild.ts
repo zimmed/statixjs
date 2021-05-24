@@ -1,6 +1,5 @@
 import { v4 } from 'uuid';
-import { Component, ComponentProps, IRender } from '../../index.d';
-import { CMap } from '../globals/html/constants';
+import type { Component, ComponentProps, IRender, CMap } from '../../index.d';
 
 export default function injectChild(
   Parent: Component,

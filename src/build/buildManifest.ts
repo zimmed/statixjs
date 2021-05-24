@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { IConfig } from '../../index.d';
+import type { IConfig } from '../../index.d';
 import { safeWrite } from '../utils';
 
 export default function buildManifest(wsPath: string, config: IConfig = SITE) {

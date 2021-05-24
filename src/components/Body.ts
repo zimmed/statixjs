@@ -1,4 +1,4 @@
-import { BodyProps } from '../../index.d';
+import type { BodyProps } from '../../index.d';
 
 export default function Body({ scripts = SITE.scripts, style, children }: BodyProps = {}) {
   const scriptTags = scripts

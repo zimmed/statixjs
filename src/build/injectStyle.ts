@@ -1,6 +1,7 @@
-import fs, { Dirent } from 'fs-extra';
+import fs from 'fs-extra';
+import type { Dirent } from 'fs-extra';
 import { join } from 'path';
-import { Component, IRender } from '../../index.d';
+import type { Component, IRender } from '../../index.d';
 import { injectChild } from '../utils';
 import getStyleComponent from './getStyleComponent';
 

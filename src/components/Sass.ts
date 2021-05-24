@@ -1,4 +1,4 @@
-import { ComponentProps } from '../../index.d';
+import type { ComponentProps } from '../../index.d';
 
 export default function Sass({
   children,

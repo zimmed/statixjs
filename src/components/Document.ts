@@ -1,4 +1,4 @@
-import { DocumentProps } from '../../index.d';
+import type { DocumentProps } from '../../index.d';
 
 export default function Document({
   lang = SITE.language,

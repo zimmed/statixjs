@@ -1,7 +1,7 @@
 import process from 'process';
 import { resolve, join } from 'path';
 import { safeWrite } from '../utils';
-import { Component, CMap } from '../../index.d';
+import type { Component, CMap } from '../../index.d';
 
 type PMap = { [x: string]: Component | PMap };
 

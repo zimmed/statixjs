@@ -1,5 +1,5 @@
 import { renderSync } from 'node-sass';
-import { ISass, IStringable } from '../../index.d';
+import type { ISass, IStringable } from '../../index.d';
 
 const compiledCss: { [x: string]: IStringable[] } = { default: [] };
 

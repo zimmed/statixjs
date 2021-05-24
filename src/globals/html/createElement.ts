@@ -1,16 +1,7 @@
 import { v4 } from 'uuid';
-import {
-  IStringable,
-  TAB_CHAR,
-  BOOL_ATTRIBUTES,
-  VOID_ELEMENTS,
-  ELEMENT,
-  VALUE,
-  CMap,
-  Node,
-  IRender,
-  Component,
-} from './constants';
+import type { IStringable, Component, CMap, IRender } from '../../../index.d';
+import type { Node } from './types';
+import { TAB_CHAR, BOOL_ATTRIBUTES, VOID_ELEMENTS, ELEMENT, VALUE } from './constants';
 
 type Parent = {
   constructor: Component;

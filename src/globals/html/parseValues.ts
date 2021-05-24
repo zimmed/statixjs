@@ -1,4 +1,5 @@
-import { ValueNode, placeholderPattern, VALUE } from './constants';
+import { placeholderPattern, VALUE } from './constants';
+import type { ValueNode } from './types';
 
 export default function parseValues(str: string, values: any[]): ValueNode[] {
   const nodes: ValueNode[] = [];

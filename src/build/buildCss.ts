@@ -1,6 +1,6 @@
 import process from 'process';
 import { resolve, join } from 'path';
-import { ISass } from '../../index.d';
+import type { ISass } from '../../index.d';
 import { safeWrite } from '../utils';
 import { dumpCss } from '../globals/sass';
 

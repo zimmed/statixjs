@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import { v4 } from 'uuid';
-import { Component } from '../../index.d';
+import type { Component } from '../../index.d';
 
 export default function createComponent(name: string, src: string): Component {
   function Comp(props: { [x: string]: any }, ...children: any[]) {

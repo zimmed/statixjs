@@ -91,7 +91,12 @@ async function initTsConfig() {
   if (!tsconfig.include) tsconfig.include = [];
   uniqueAdd(tsconfig.include, 'src/**/*', 'siteconfig.json');
   if (!tsconfig.exclude) tsconfig.exclude = [];
-  uniqueAdd(tsconfig.exclude, 'node_modules', SITE.assetsPath, SITE.websitePath);
+  uniqueAdd(
+    tsconfig.exclude,
+    'node_modules',
+    SITE.buildOptions.assetsPath,
+    SITE.buildOptions.websitePath
+  );
   return fs.promises.writeFile(path, JSON.stringify(tsconfig, null, 2) + '\n', 'utf8');
 }
 

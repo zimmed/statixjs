@@ -1,4 +1,4 @@
-import { BP } from '../../index.d';
+import type { BP } from '../../index.d';
 
 const ordered: BP[] = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 
