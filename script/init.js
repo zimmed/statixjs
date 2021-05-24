@@ -42,7 +42,7 @@ function fileExists(path, ...paths) {
   return fs.promises
     .access(join(path, 'pages', 'index.ts'), fs.constants.F_OK)
     .then(() => true)
-    .catch(() => (paths.length ? exists(...paths) : false));
+    .catch(() => (paths.length ? fileExists(...paths) : false));
 }
 
 async function initSiteConfig() {
