@@ -15,7 +15,7 @@ export default function createComponent(name: string, src: string): Component {
       'extendSass',
       'uuid',
       'cx',
-      `return html\`${src}\`;`
+      'return html`' + src + '`;'
     )(props, children, SITE, Color, Break, html, sass, extendSass, v4, cx);
   }
 
