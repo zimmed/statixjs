@@ -44,7 +44,8 @@ export default async function getPages(sheetsPath: string): Promise<RecursiveSMa
       } else if (/\.(sass|scss|x?css|sxss|style|sheet|stylesheet)$/i.test(file.name)) {
         style = createSass(
           convertInterpolation(
-            fs.readFileSync(join(path, file.name), 'utf8')?.toString(),
+            await import(join(path, file.name)),
+            // fs.readFileSync(join(path, file.name), 'utf8')?.toString(),
             'scss',
             'node'
           )

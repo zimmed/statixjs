@@ -18,7 +18,11 @@ export default async function getStyle(
   let Style: Component | IRender | undefined;
 
   if (styleFile) {
-    Style = await getStyleComponent(cName, fs.readFileSync(join(path, styleFile.name), 'utf8'));
+    Style = await getStyleComponent(
+      cName,
+      await import(join(path, styleFile.name))
+      // fs.readFileSync(join(path, styleFile.name), 'utf8')
+    );
   } else {
     styleFile = files.find((f) => new RegExp(`^${name}.*\\.(t|j)x?ss$`, 'i').test(f.name));
     if (styleFile) {
