@@ -17,7 +17,7 @@ export default function Sass({
 
   if (!sel && isInstance) {
     sel = parent?.props.id
-      ? `#${parent?.props.id}`
+      ? `${parent.props.name ? `.${parent.props.name}` : ''}#${parent.props.id}`
       : parent
       ? `.${[parent.props.name, ...parent.props.className.split(' ')].join('.')}`
       : '';
