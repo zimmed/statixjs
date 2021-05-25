@@ -1,4 +1,5 @@
 import type { ComponentProps } from '../../index.d';
+import { createSass } from '../utils';
 
 export default function Sass({
   children,
@@ -29,20 +30,7 @@ export default function Sass({
     sel = parent ? `.${parent.props.name}` : '';
   }
 
-  const css = new Function(
-    'SITE',
-    'Color',
-    'Break',
-    'sass',
-    'props',
-    'return sass`' + children + '`;'
-  )(
-    SITE,
-    Color,
-    Break,
-    sass,
-    parent?.props || {}
-  )(sel);
+  const css = children ? createSass(children, parent?.props)(sel) : null;
 
-  return SITE.buildOptions.bundleStyles ? null : html`${css}`;
+  return SITE.buildOptions.bundleStyles && css ? null : html`${css}`;
 }

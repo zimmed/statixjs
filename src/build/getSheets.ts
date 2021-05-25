@@ -2,8 +2,7 @@ import fs from 'fs-extra';
 import { resolve, join } from 'path';
 import process from 'process';
 import type { ISass } from '../../index.d';
-import { convertInterpolation } from '../utils';
-import { Sass } from '../components';
+import { convertInterpolation, createSass } from '../utils';
 
 type RecursiveSMap = { [x: string]: RecursiveSMap | ISass };
 
@@ -43,15 +42,13 @@ export default async function getPages(sheetsPath: string): Promise<RecursiveSMa
           throw new Error(`File export is not valid style: ${join(path, file.name)}`);
         }
       } else if (/\.(sass|scss|x?css|sxss|style|sheet|stylesheet)$/i.test(file.name)) {
-        style = Sass({
-          inst: false,
-          cls: true,
-          children: convertInterpolation(
+        style = createSass(
+          convertInterpolation(
             fs.readFileSync(join(path, file.name), 'utf8')?.toString(),
             'scss',
             'node'
-          ),
-        });
+          )
+        );
       }
       if (style) {
         if (obj[name])
