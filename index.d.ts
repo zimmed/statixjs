@@ -21,8 +21,8 @@ export interface Component<Props extends object = any> {
 export type CMap = { [x: string]: Component };
 
 export interface IColor {
-  mod(color: string, factor = 1): string;
-  opacity(color: string, alpha = 1): string;
+  mod(color: string, factor?: number): string;
+  opacity(color: string, alpha?: number): string;
 }
 
 export type BP = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
