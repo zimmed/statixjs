@@ -81,7 +81,10 @@ globalThis.sass = function sass(strings: TemplateStringsArray, ...expressions: a
     addCss(css);
     return nowrap
       ? css
-      : `<style data-sheet-type="${selector ? 'component' : 'root'}">\n${css}</style>`;
+      : `<style data-sheet-type="${selector ? 'component' : 'root'}">${css.replace(
+          /\n/g,
+          ' '
+        )}</style>`;
   }
 
   template.toString = () => template();
@@ -108,7 +111,10 @@ globalThis.extendSass = function extendSass(
     addCss(css);
     return nowrap
       ? css
-      : `<style data-sheet-type="${selector ? 'component' : 'root'}">\n${css}</style>`;
+      : `<style data-sheet-type="${selector ? 'component' : 'root'}">${css.replace(
+          /\n/g,
+          ' '
+        )}</style>`;
   }
 
   template.toString = () => template();
