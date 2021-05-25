@@ -44,5 +44,5 @@ export default function Sass({
     parent?.props || {}
   )(sel);
 
-  return SITE.buildOptions.externalStyles ? null : html`${css}`;
+  return SITE.buildOptions.bundleStyles ? null : html`${css}`;
 }

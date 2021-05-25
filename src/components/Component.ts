@@ -14,7 +14,7 @@ export default function Component({
 
   return html`
     <div data-component=${name} className=${cls} id=${id}>
-      ${children} ${SITE.buildOptions.externalStyles ? '' : css}
+      ${children} ${SITE.buildOptions.bundleStyles ? '' : css}
     </div>
   `;
 }

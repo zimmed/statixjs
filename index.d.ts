@@ -73,7 +73,7 @@ export interface IConfig {
     assetsPath: string;
     websitePath: string;
     manifest?: boolean;
-    externalStyles?: boolean;
+    bundleStyles?: boolean;
   };
   devServerOptions: {
     port: number;

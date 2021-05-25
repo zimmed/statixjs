@@ -12,7 +12,7 @@ export default function Body({ scripts = SITE.scripts, style, children }: BodyPr
 
   return html`
     <body>
-      ${children} ${SITE.buildOptions.externalStyles ? '' : css} ${scriptTags}
+      ${children} ${SITE.buildOptions.bundleStyles ? '' : css} ${scriptTags}
     </body>
   `;
 }

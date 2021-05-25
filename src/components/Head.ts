@@ -31,7 +31,7 @@ export default function Head({
         html`<link rel="stylesheet" type="text/css" href="${href}" />` as unknown as IStringable
     )
     .concat(
-      SITE.buildOptions.externalStyles
+      SITE.buildOptions.bundleStyles
         ? (html`<link
             rel="stylesheet"
             type="text/css"
@@ -56,7 +56,7 @@ export default function Head({
     icons,
     manifest,
     styles,
-    SITE.buildOptions.externalStyles ? '' : css,
+    SITE.buildOptions.bundleStyles ? '' : css,
     scripts,
     children,
   ].join('');

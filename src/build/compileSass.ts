@@ -5,5 +5,5 @@ export default function compileSass(src: string, selector?: string): string {
     extendSass
   )(selector);
 
-  return SITE.buildOptions.externalStyles ? '' : css;
+  return SITE.buildOptions.bundleStyles ? '' : css;
 }
