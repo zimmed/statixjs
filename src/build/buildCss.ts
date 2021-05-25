@@ -9,7 +9,7 @@ type SMap = { [x: string]: ISass | SMap };
 function buildSheet(style: ISass, path: string, filename: string) {
   globalThis.CURRENT_PAGE = join(path, filename);
   style();
-  safeWrite(resolve(process.cwd(), path, `${filename}.css`), `${dumpCss()}`, 'utf8');
+  safeWrite(resolve(process.cwd(), path, `${filename}.css`), `${dumpCss()}\n`, 'utf8');
   globalThis.CURRENT_PAGE = 'default';
 }
 
@@ -25,6 +25,6 @@ function buildSheets(sheets: SMap, path: string = '') {
 }
 
 export default function buildCss(sheets: SMap, path: string = '') {
-  safeWrite(resolve(process.cwd(), path, 'bundle.css'), dumpCss('default'), 'utf8');
+  safeWrite(resolve(process.cwd(), path, 'bundle.css'), `${dumpCss('default')}\n`, 'utf8');
   buildSheets(sheets, path);
 }

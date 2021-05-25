@@ -14,7 +14,7 @@ export default function buildManifest(wsPath: string, config: IConfig = SITE) {
 
   return safeWrite(
     resolve(process.cwd(), wsPath, 'manifest.json'),
-    JSON.stringify(manifest, null, 2),
+    JSON.stringify(manifest, null, 2) + '\n',
     'utf8'
   );
 }

@@ -15,7 +15,7 @@ function buildPage(
   globalThis.CURRENT_PAGE = 'default'; // join(path, filename);
   safeWrite(
     resolve(process.cwd(), path, `${filename}.html`),
-    `${Page({})?.toString(opts.prettyPrint ? 0 : -1, components, false) || ''}`,
+    `${Page({})?.toString(opts.prettyPrint ? 0 : -1, components, false) || ''}\n`,
     'utf8'
   );
   globalThis.CURRENT_PAGE = '';
