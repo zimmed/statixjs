@@ -1,6 +1,5 @@
-import fs from 'fs-extra';
 import type { Dirent } from 'fs-extra';
-import { join } from 'path';
+import { join, relative } from 'path';
 import type { Component, IRender } from '../../index.d';
 import { injectChild } from '../utils';
 import getStyleComponent from './getStyleComponent';
@@ -26,7 +25,10 @@ export default async function getStyle(
   } else {
     styleFile = files.find((f) => new RegExp(`^${name}.*\\.(t|j)x?ss$`, 'i').test(f.name));
     if (styleFile) {
-      Style = await getStyleComponent(cName, await import(join(path, styleFile.name)));
+      Style = await getStyleComponent(
+        cName,
+        await import(relative(__dirname, join(path, styleFile.name)))
+      );
       if (!Style) throw new Error(`Invalid style export from ${join(path, styleFile.name)}`);
     }
   }

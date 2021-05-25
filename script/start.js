@@ -3,7 +3,7 @@ const { exec: _exec } = require('./helpers');
 
 let procs = 0;
 
-module.exports = function exec(cli, waitForAll = false, restarts = 0, restartInterval = 1000) {
+function exec(cli, waitForAll = false, restarts = 0, restartInterval = 1000) {
   procs += 1;
   _exec(cli).then((data) => {
     if (restarts > 0) {
@@ -14,7 +14,7 @@ module.exports = function exec(cli, waitForAll = false, restarts = 0, restartInt
       if (!waitForAll || !procs) process.exit(data);
     }
   });
-};
+}
 
 function start(waitForAll = false) {
   _exec('$(npm bin)/statix-compile').then(() => {

@@ -10,6 +10,7 @@ let SITE;
 const dependencies = [
   'strip-json-comments',
   'fast-live-reload',
+  'raw-loader',
   'fs-extra',
   'glob-watcher',
   'ts-loader',
