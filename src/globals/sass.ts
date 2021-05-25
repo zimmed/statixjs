@@ -118,5 +118,5 @@ globalThis.extendSass = function extendSass(
 };
 
 export function dumpCss(page = CURRENT_PAGE) {
-  return compiledCss[page].join('\n');
+  return compiledCss[page]?.join('\n') || '';
 }
