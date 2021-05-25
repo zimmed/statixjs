@@ -10,7 +10,7 @@ function serve() {
   exec(
     '$(npm bin)/fast-live-reload',
     '-s',
-    `"${path}"`,
+    path,
     '-sp',
     SITE.devServerOptions.port,
     '-p',
