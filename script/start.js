@@ -17,8 +17,8 @@ module.exports = function exec(cli, waitForAll = false, restarts = 0, restartInt
 };
 
 function start(waitForAll = false) {
-  _exec('$(npm-bin)/statix-compile').then(() => {
-    exec('$(npm-bin)/statix-compile-watch', waitForAll);
+  _exec('$(npm bin)/statix-compile').then(() => {
+    exec('$(npm bin)/statix-compile-watch', waitForAll);
     exec('$(npm bin)/statix-build-watch', waitForAll);
     exec('$(npm bin)/statix-serve', waitForAll);
   });
