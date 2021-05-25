@@ -35,7 +35,7 @@ export default async function getPages(pagesPath: string): Promise<RecursiveCMap
       let mod;
 
       if (/\.(t|j)sx?$/i.test(file.name)) {
-        mod = await import(relative(__dirname, join(path, file.name)));
+        mod = await import('!!raw-loader!./' + relative(process.cwd(), join(path, file.name)));
         Comp = mod?.default || mod;
         if (!Comp) throw new Error(`File export is empty: ${join(path, file.name)}`);
         if (Comp.renderable) {
@@ -54,7 +54,7 @@ export default async function getPages(pagesPath: string): Promise<RecursiveCMap
         Comp = createComponent(
           name,
           convertInterpolation(
-            await import(relative(__dirname, join(path, file.name))),
+            await import('!!raw-loader!./' + relative(process.cwd(), join(path, file.name))),
             // fs.readFileSync(join(path, file.name), 'utf8')?.toString(),
             'hbs',
             'node'
