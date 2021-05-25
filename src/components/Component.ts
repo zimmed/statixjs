@@ -10,7 +10,7 @@ export default function Component({
   children,
 }: ComponentProps = {}) {
   const cls = cx(name, className);
-  const css = style ? style(`#${id}`) : '';
+  const css = style ? style(`.${name}#${id}`) : '';
 
   return html`
     <div data-component=${name} className=${cls} id=${id}>
